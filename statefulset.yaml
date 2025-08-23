@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: simple-statefulset
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simple-statefulset
+  template:
+    metadata:
+      labels:
+        app: simple-statefulset
+    spec:
+      containers:
+      - name: busybox
+        image: busybox
+        command:
+        - sh
+        - -c
+        - |
+          echo "Hello from $(hostname)" && sleep 3600
+
